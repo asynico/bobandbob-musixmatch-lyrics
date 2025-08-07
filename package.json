@@ -1,0 +1,63 @@
+{
+  "name": "@bobandbob/musixmatch-lyrics",
+  "version": "2.2.0",
+  "description": "Unofficial Musixmatch lyrics API wrapper for Node.js",
+  "main": "src/musixmatch.js",
+  "type": "module",
+  "exports": {
+    ".": "./src/musixmatch.js"
+  },
+  "files": [
+    "src/"
+  ],
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "musixmatch",
+    "lyrics",
+    "api",
+    "node",
+    "music",
+    "song",
+    "track",
+    "artist",
+    "album",
+    "search",
+    "fetch",
+    "unsynced",
+    "synced",
+    "lrc",
+    "subtitle",
+    "discord",
+    "bot",
+    "wrapper",
+    "npm",
+    "javascript",
+    "js",
+    "token",
+    "cache",
+    "parser",
+    "open source",
+    "opensource",
+    "music api",
+    "lyrics api",
+    "nodejs",
+    "web",
+    "web api",
+    "no api key",
+    "free",
+    "community",
+    "utility",
+    "library"
+  ],
+  "author": "asynico",
+  "license": "MIT",
+  "dependencies": {
+    "fetch-cookie": "^3.1.0",
+    "node-fetch": "^3.3.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
