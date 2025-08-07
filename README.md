@@ -87,6 +87,7 @@ node src/example.cjs "Imagine Dragons - Believer"
 
 ---
 
+
 ### LRCLib
 
 Unofficial LRCLib lyrics API integration for even more sources.
@@ -120,6 +121,46 @@ const { lrclib } = api;
 
 ---
 
+### Genius
+
+Genius lyrics API integration. Requires a Genius API client access token.
+
+#### Setup
+
+1. Get your Genius API access token from https://genius.com/api-clients
+2. Set the token in your code:
+
+```js
+import api from '@bobandbob/musixmatch-lyrics';
+api.genius.setAccessToken('YOUR_GENIUS_ACCESS_TOKEN');
+```
+
+#### Usage Example
+
+```js
+const { genius } = api;
+genius.setAccessToken('YOUR_GENIUS_ACCESS_TOKEN');
+
+(async () => {
+  const search = await genius.searchSong('Taylor Swift - 22');
+  const songId = search.response.hits[0].result.id;
+
+  const lyricsUrl = await genius.getLyricsUrl(songId);
+  console.log('Lyrics page:', lyricsUrl);
+})();
+```
+
+#### Methods
+
+- `setAccessToken(token: string)`
+  - Set your Genius API access token.
+- `searchSong(query: string)`
+  - Search for a song on Genius.
+- `getLyricsUrl(songId: number)`
+  - Get the Genius lyrics page URL for a song ID.
+
+---
+
 ## ❓ Troubleshooting
 
 - If you get `No lyrics found`, try a different query or check your internet connection.
@@ -137,4 +178,3 @@ const { lrclib } = api;
 ## 📄 License
 
 MIT
-The way that things
