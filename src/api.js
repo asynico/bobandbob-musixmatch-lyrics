@@ -1,2 +1,7 @@
 import { Musixmatch } from './musixmatch.js';
-export default Musixmatch;
+import lrclib from './lrclib.js';
+
+export default {
+	Musixmatch,
+	lrclib,
+};

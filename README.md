@@ -75,6 +75,7 @@ node src/example.cjs "Imagine Dragons - Believer"
 
 ## 🧩 API
 
+
 ### Musixmatch
 
 #### Methods
@@ -83,6 +84,39 @@ node src/example.cjs "Imagine Dragons - Believer"
   - Fetches lyrics for a given song or artist.
 - `findLyrics(query: string): Promise<string>`
   - Returns unsynced lyrics only.
+
+---
+
+### LRCLib
+
+Unofficial LRCLib lyrics API integration for even more sources.
+
+#### Usage Example
+
+```js
+import api from '@bobandbob/musixmatch-lyrics';
+
+const { lrclib } = api;
+
+(async () => {
+  const result = await lrclib.getLyrics({
+    track_name: 'I Want to Live',
+    artist_name: 'Borislav Slavov',
+    album_name: "Baldur's Gate 3 (Original Game Soundtrack)",
+    duration: 233,
+  });
+  console.log(result);
+})();
+```
+
+#### Methods
+
+- `getLyrics({ track_name, artist_name, album_name?, duration? })`
+  - Fetches lyrics for a specific track, artist, album, and duration.
+- `searchLyrics({ track_name, artist_name })`
+  - Searches for tracks and lyrics by name and artist.
+- `getCachedLyrics({ track_name, artist_name, album_name?, duration? })`
+  - Fetches cached lyrics for a track.
 
 ---
 
