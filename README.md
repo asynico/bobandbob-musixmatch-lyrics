@@ -157,7 +157,33 @@ genius.setAccessToken('YOUR_GENIUS_ACCESS_TOKEN');
 - `searchSong(query: string)`
   - Search for a song on Genius.
 - `getLyricsUrl(songId: number)`
+
   - Get the Genius lyrics page URL for a song ID.
+
+---
+
+### OVH
+
+OVH lyrics API integration. No API key required.
+
+#### Usage Example
+
+```js
+const { ovh } = api;
+
+(async () => {
+  const result = await ovh.getLyrics({
+    artist: 'Taylor Swift',
+    title: '22',
+  });
+  console.log(result.lyrics);
+})();
+```
+
+#### Methods
+
+- `getLyrics({ artist, title })`
+  - Fetches lyrics for a given artist and song title.
 
 ---
 
