@@ -25,7 +25,7 @@ class Musixmatch {
     tokenData = null;
     tokenPromise = null;
     TOKEN_TTL = 55000;
-    TOKEN_FILE = 'musixmatch_token.txt';
+    TOKEN_FILE = 'musixmatch_token.json';
 
     constructor() {
         this.initializeToken();
@@ -41,12 +41,28 @@ class Musixmatch {
 
 
     async readTokenFromFile() {
-        return await readToken(this.TOKEN_FILE);
+        try {
+            const data = await readToken(this.TOKEN_FILE);
+            if (!data) return null;
+            const json = JSON.parse(data);
+            if (json.note !== "DO NOT DELETE") return null; 
+            return {
+                value: json.token,
+                expires: json.expires
+            };
+        } catch {
+            return null;
+        }
     }
 
     async saveTokenToFile(token, expires) {
         try {
-            await saveToken(this.TOKEN_FILE, token, expires);
+            const json = {
+                note: "DO NOT DELETE",
+                token,
+                expires
+            };
+            await saveToken(this.TOKEN_FILE, JSON.stringify(json, null, 2));
         } catch (error) {
             console.error('Failed to save token to file:', error);
         }
