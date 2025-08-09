@@ -1,4 +1,4 @@
-import { Musixmatch } from '@bobandbob/musixmatch-lyrics';
+const { Musixmatch } = require('@bobandbob/musixmatch-lyrics').default.default;
 
 const query = process.argv.slice(2).join(' ') || 'Imagine Dragons - Believer';
 const mxm = new Musixmatch();

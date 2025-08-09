@@ -1,6 +1,6 @@
-import { Musixmatch } from './musixmatch.js';
+import Musixmatch from './musixmatch.js';
 import lrclib from './lrclib.js';
-const genius = require('./genius.js').default;
+import genius from './genius.js';
 
 export default {
 	Musixmatch,

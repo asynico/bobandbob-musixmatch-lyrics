@@ -27,9 +27,13 @@ npm install @bobandbob/musixmatch-lyrics
 ### Programmatic Example
 
 ```js
-import { Musixmatch } from '@bobandbob/musixmatch-lyrics';
+// For ES6 / TypeScript
+import { MusixmatchLyrics } from '@bobandbob/musixmatch-lyrics';
 
-const mxm = new Musixmatch();
+// For JavaScript (dynamic import)
+const { default: MusixmatchLyrics } = await import('@bobandbob/musixmatch-lyrics');
+
+const mxm = new MusixmatchLyrics();
 
 (async () => {
   const lyricsResult = await mxm.getLrc('Imagine Dragons - Believer');
@@ -43,6 +47,7 @@ const mxm = new Musixmatch();
     console.log(lyricsText);
   }
 })();
+
 ```
 
 ---
@@ -95,7 +100,10 @@ Unofficial LRCLib lyrics API integration for even more sources.
 #### Usage Example
 
 ```js
+// For es6/typescript
 import api from '@bobandbob/musixmatch-lyrics';
+// For javascript 
+const { default: MusixmatchLyrics } = await import('@bobandbob/musixmatch-lyrics');
 
 const { lrclib } = api;
 

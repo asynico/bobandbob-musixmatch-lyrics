@@ -5,20 +5,12 @@ import { ENDPOINTS, REGEX } from './utils/constants.js';
 let fetchInstance = null;
 async function getFetch() {
     if (!fetchInstance) {
-        const [nodeFetch, fetchCookie] = await Promise.all([
-            import('node-fetch').then(m => m.default),
-            import('fetch-cookie').then(m => m.default || m)
-        ]);
-
-        if (typeof fetchCookie !== 'function') {
-            throw new Error('Invalid fetch-cookie export');
-        }
-
-        fetchInstance = fetchCookie(nodeFetch);
+        const { default: fetch } = await import('node-fetch');
+        const { default: fetchCookie } = await import('fetch-cookie');
+        fetchInstance = fetchCookie(fetch);
     }
     return fetchInstance;
 }
-
 
 class Musixmatch {
 
@@ -38,7 +30,6 @@ class Musixmatch {
             console.error('Musixmatch initialization failed:', error);
         }
     }
-
 
     async readTokenFromFile() {
         try {
@@ -123,7 +114,6 @@ class Musixmatch {
         return response.json();
     }
 
-
     cleanLyrics(lyrics) {
         return cleanLyrics(lyrics, REGEX);
     }
@@ -132,13 +122,11 @@ class Musixmatch {
         return parseSubtitles(subtitleBody);
     }
 
-
     async searchTrack(title, token) {
         const url = `${ENDPOINTS.SEARCH}&q_track=${encodeURIComponent(title)}&usertoken=${token}`;
         const data = await this.apiGet(url);
         return data?.message?.body?.track_list?.[0]?.track || null;
     }
-
 
     async getAltLyrics(title, artist, token) {
         const url = `${ENDPOINTS.ALT_LYRICS}&usertoken=${token}&q_artist=${encodeURIComponent(artist)}&q_track=${encodeURIComponent(title)}`;
@@ -151,7 +139,6 @@ class Musixmatch {
         };
         return result;
     }
-
 
     parseQuery(query) {
         const cleanedQuery = query
@@ -203,7 +190,6 @@ class Musixmatch {
 
         return null;
     }
-
 
     async getLyricsFromTrack(trackData, token) {
         try {
