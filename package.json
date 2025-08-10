@@ -1,6 +1,6 @@
 {
   "name": "@bobandbob/musixmatch-lyrics",
-  "version": "2.6.6",
+  "version": "2.6.7",
   "description": "Unofficial Musixmatch lyrics API wrapper for Node.js",
   "main": "src/musixmatch.js",
   "type": "module",

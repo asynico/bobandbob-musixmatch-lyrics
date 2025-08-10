@@ -1,6 +1,6 @@
 import { readToken, saveToken } from './utils/cache.js';
 import { cleanLyrics, parseSubtitles } from './utils/lyricsParser.js';
-import { ENDPOINTS, REGEX } from './utils/constants.js';
+import { ENDPOINTS, HEADERS, REGEX } from './utils/constants.js';
 
 let fetchInstance = null;
 async function getFetch() {
@@ -61,7 +61,20 @@ class Musixmatch {
 
     async fetchToken() {
         const fetch = await getFetch();
-        const response = await fetch(ENDPOINTS.TOKEN);
+        
+        const response = await fetch(ENDPOINTS.TOKEN, {
+            method: 'GET',
+            headers: {
+                ...HEADERS,
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
+                'Sec-Fetch-Dest': 'empty',
+                'Sec-Fetch-Mode': 'cors',
+                'Sec-Fetch-Site': 'same-site'
+            }
+        });
 
         if (!response.ok) throw new Error(`Token request failed: ${response.status}`);
 
@@ -105,7 +118,15 @@ class Musixmatch {
 
     async apiGet(url) {
         const fetch = await getFetch();
-        const response = await fetch(url);
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                ...HEADERS,
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Language': 'en-US,en;q=0.9'
+            }
+        });
 
         if (!response.ok) {
             throw new Error(`API request failed: ${response.status}`);
